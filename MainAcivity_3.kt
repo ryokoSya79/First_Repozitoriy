@@ -1,5 +1,3 @@
-package com.example.testappimage
-
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -16,16 +14,16 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 import java.util.jar.Manifest
 import kotlin.collections.ArrayList
 
-class MainActivity_3 : AppCompatActivity() {
+class MainActivity: AppCompatActivity() {
 
     private var speechRecognition : SpeechRecognizer? = null
     private var editText : TextView? = null
     private var micBnt : ImageView? = null
+    private var img: ImageView? = null
 
     private var mAnimationDrawable: AnimationDrawable = AnimationDrawable()
     private val DURATION = 1500
@@ -43,6 +41,7 @@ class MainActivity_3 : AppCompatActivity() {
 
         editText = findViewById(R.id.textView)
         micBnt = findViewById(R.id.imageView)
+        img = findViewById(R.id.img)
         speechRecognition = SpeechRecognizer.createSpeechRecognizer(this)
 
 
@@ -189,7 +188,7 @@ class MainActivity_3 : AppCompatActivity() {
                         Log.d("TEST CICLE FOR: ", "${to_list}")
                         if (data_to_translate == to_list) {
 
-                            startFrameAnimation(img, translate[to_list])
+                            startFrameAnimation(img!!, translate[to_list])
                             mAnimationDrawable.setVisible(true, false)
 
 
@@ -231,7 +230,7 @@ class MainActivity_3 : AppCompatActivity() {
     private fun checkPermissions(){
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
             ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.RECORD_AUDIO),
-            RecordAudioRequestCode)
+                RecordAudioRequestCode)
         }
     }
 
@@ -275,12 +274,10 @@ class MainActivity_3 : AppCompatActivity() {
 //        mAnimationDrawable = AnimationDrawable()
 
     }
-    }
+}
 //    fun stopFrameAnimation() {
 //        if (mAnimationDrawable.isRunning) {
 //            mAnimationDrawable.stop()
 //            mAnimationDrawable.setVisible(false, false)
 //        }
 //    }
-
-
